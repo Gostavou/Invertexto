@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="https://cdn.invertexto.com/img/invertexto.png" alt="Logo invertexto" class="logo-invertexto">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button expand="block" (click)="goToPessoaPage()">
+    Gerador de pessoa
+    <ion-icon name="people" slot="end"></ion-icon>
+  </ion-button>
+  
+  <ion-button expand="block" (click)="goToCepPage()">
+    Buscador com Cep
+    <ion-icon name="pin" slot="end"></ion-icon>
+  </ion-button>
+</ion-content>
