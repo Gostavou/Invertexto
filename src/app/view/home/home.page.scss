@@ -3,18 +3,16 @@
   height: auto;
   margin-left: auto;
   margin-right: auto;
-  display:block;
+  display: block;
 }
-
 ion-button{
   margin-top: 2rem;
-  --background: rgb(125, 224, 101);
-  color: rgb(175, 52, 52);
-  font-size: 1.3rem;
+  --background: blue;
+  color: yellow;
+  font-size: 1.2rem;
   font-weight: bold;
-  
-  ion-icon {
-    margin-left: 0.5rem;
-    font-size: 1.5rem;
-  }
+}
+ion-icon{
+  margin-left: 1rem;
+  font-size: 1.6rem;
 }
