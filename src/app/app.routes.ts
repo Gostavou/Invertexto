@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'pessoa',
     loadComponent: () => import('./view/pessoa/pessoa.page').then( m => m.PessoaPage)
   },
+  {
+    path: 'cnpj',
+    loadComponent: () => import('./view/cnpj/cnpj.page').then( m => m.CnpjPage)
+  },
 ];

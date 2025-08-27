@@ -23,9 +23,9 @@ import { Invertexto } from 'src/app/service/invertexto';
 addIcons({ arrowBack });
 
 @Component({
-  selector: 'app-cep',
-  templateUrl: './cep.page.html',
-  styleUrls: ['./cep.page.scss'],
+  selector: 'app-cnpj',
+  templateUrl: './cnpj.page.html',
+  styleUrls: ['./cnpj.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -42,9 +42,9 @@ addIcons({ arrowBack });
     IonLabel
   ]
 })
-export class CepPage implements OnInit {
-  cep: string = '';
-  dadosCep: any = null;
+export class CnpjPage implements OnInit {
+  cnpj: string = '';
+  dadosCnpj: any = null;
   errorMessage: string = '';
 
   constructor(
@@ -55,23 +55,23 @@ export class CepPage implements OnInit {
 
   ngOnInit() {}
 
-  buscarCep() {
-    if (this.cep && this.cep.length === 8) {
-      this.invertextoService.getByCep(this.cep).subscribe(
+  buscarCnpj() {
+    if (this.cnpj && this.cnpj.length === 14) {
+      this.invertextoService.getByCnpj(this.cnpj).subscribe(
         (response) => {
           console.log(response);
-          this.dadosCep = response;
+          this.dadosCnpj = response;
           this.errorMessage = '';
         },
         (error) => {
           console.error('Erro na requisição', error);
-          this.dadosCep = null;
-          this.errorMessage = 'Erro ao buscar CEP, tente novamente';
+          this.dadosCnpj = null;
+          this.errorMessage = 'Erro ao buscar CNPJ, tente novamente';
         }
       );
     } else {
-      this.dadosCep = null;
-      this.errorMessage = 'Por favor, insira um CEP válido com 8 dígitos';
+      this.dadosCnpj = null;
+      this.errorMessage = 'Por favor, insira um CNPJ válido com 14 dígitos';
     }
   }
 

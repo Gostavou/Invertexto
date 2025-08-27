@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { people, pin } from 'ionicons/icons';
+import { people, pin, storefront } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ import { people, pin } from 'ionicons/icons';
 })
 export class HomePage {
   constructor(private router: Router) {
-    addIcons({ people, pin });
+    addIcons({ people, pin, storefront });
   }
   
   goToPessoaPage() {
@@ -22,5 +22,9 @@ export class HomePage {
   
   goToCepPage() {
     this.router.navigate(['cep']);
+  }
+
+  goToCnpjPage() {
+    this.router.navigate(['cnpj']);
   }
 }

@@ -29,5 +29,15 @@ export class Invertexto {
       })
     );
     }
+
+    getByCnpj(cnpj: string): Observable<any>{
+    const url = `https://api.invertexto.com/v1/cnpj/${cnpj}?token=${this._token}`;
+    return this.http.get<any>(url).pipe(
+      catchError((error)=>{
+        console.error('Erro na requisição', error);
+        return throwError(()=> new Error('Erro ao buscar os dados'));
+      })
+    );
+    }
   
 }

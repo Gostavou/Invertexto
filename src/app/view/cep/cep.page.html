@@ -1,13 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cep</ion-title>
+  <img
+  src="https://cdn.invertexto.com/img/invertexto.png"
+  alt="Logo Invertexto"
+  class="logo-invertexto"
+  />
   </ion-toolbar>
-</ion-header>
+ </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cep</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+ <ion-content [fullscreen]="true">
+  <ion-button fill="clear" (click)="goToHome()" style="margin-top: 20px">
+  <ion-icon slot="start" name="arrow-back"></ion-icon>
+  </ion-button>
+  <!-- Campo para inserir o CEP -->
+  <ion-item>
+  <ion-label position="floating" class="input-label">Digite o CEP</ion-label>
+  <ion-input
+  [(ngModel)]="cep"
+  type="text"
+  maxlength="8"
+  class="input-cep"
+  ></ion-input>
+  </ion-item>
+  <!-- Botão para acionar a busca -->
+  <ion-button expand="block" (click)="buscarCep()" class="button-buscar">
+  Buscar
+  </ion-button>
+  @if(errorMessage){
+  <ion-item lines="none">
+  <ion-label color="danger">{{errorMessage}}</ion-label>
+  </ion-item>
+  }
+  @if(dadosCep){
+  <ion-item class="cep-info">
+  <ion-label>
+  <h2 class="cep-title">Informações do CEP:</h2>
+  <p class="cep-detail"><strong>CEP: </strong>{{dadosCep.cep}}</p>
+  <p class="cep-detail"><strong>Rua: </strong>{{dadosCep.street}}</p>
+  <p class="cep-detail"><strong>Bairro:
+ </strong>{{dadosCep.neighborhood}}</p>
+  <p class="cep-detail"><strong>Cidade: </strong>{{dadosCep.city}}</p>
+  <p class="cep-detail"><strong>Estado:
+ </strong>{{dadosCep.state}}</p>
+  </ion-label>
+  </ion-item>
+  }
+ </ion-content>
+ 
