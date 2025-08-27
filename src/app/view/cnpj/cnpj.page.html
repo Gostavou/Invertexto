@@ -20,60 +20,64 @@
 
   <ion-button expand="block" (click)="buscarCnpj()">Buscar</ion-button>
 
-  <ion-item *ngIf="errorMessage" lines="none">
-    <ion-label color="danger">{{ errorMessage }}</ion-label>
-  </ion-item>
+  @if (errorMessage) {
+    <ion-item lines="none">
+      <ion-label color="danger">{{ errorMessage }}</ion-label>
+    </ion-item>
+  }
 
-  <ion-item *ngIf="dadosCnpj" class="cnpj-info">
-    <ion-label>
-      <h2>{{ dadosCnpj.razao_social }} ({{ dadosCnpj.nome_fantasia }})</h2>
-      <p><strong>CNPJ: </strong>{{ dadosCnpj.cnpj }}</p>
-      <p><strong>Natureza Jurídica: </strong>{{ dadosCnpj.natureza_juridica }}</p>
-      <p><strong>Capital Social: </strong>{{ dadosCnpj.capital_social }}</p>
-      <p><strong>Data de Início: </strong>{{ dadosCnpj.data_inicio }}</p>
-      <p><strong>Porte: </strong>{{ dadosCnpj.porte }}</p>
-      <p><strong>Tipo: </strong>{{ dadosCnpj.tipo }}<br><br></p>
+  @if (dadosCnpj) {
+    <ion-item class="cnpj-info">
+      <ion-label>
+        <h2>{{ dadosCnpj.razao_social }} ({{ dadosCnpj.nome_fantasia }})</h2>
+        <p><strong>CNPJ: </strong>{{ dadosCnpj.cnpj }}</p>
+        <p><strong>Natureza Jurídica: </strong>{{ dadosCnpj.natureza_juridica }}</p>
+        <p><strong>Capital Social: </strong>{{ dadosCnpj.capital_social }}</p>
+        <p><strong>Data de Início: </strong>{{ dadosCnpj.data_inicio }}</p>
+        <p><strong>Porte: </strong>{{ dadosCnpj.porte }}</p>
+        <p><strong>Tipo: </strong>{{ dadosCnpj.tipo }}<br><br></p>
 
-      <h3>Situação</h3>
-      <p><strong>Nome: </strong>{{ dadosCnpj.situacao.nome }}</p>
-      <p><strong>Data: </strong>{{ dadosCnpj.situacao.data }}</p>
-      <p><strong>Motivo: </strong>{{ dadosCnpj.situacao.motivo }}<br><br></p>
+        <h3>Situação</h3>
+        <p><strong>Nome: </strong>{{ dadosCnpj.situacao.nome }}</p>
+        <p><strong>Data: </strong>{{ dadosCnpj.situacao.data }}</p>
+        <p><strong>Motivo: </strong>{{ dadosCnpj.situacao.motivo }}<br><br></p>
 
-      <h3>Endereço</h3>
-      <p>{{ dadosCnpj.endereco.tipo_logradouro }} {{ dadosCnpj.endereco.logradouro }}, {{ dadosCnpj.endereco.numero }}</p>
-      <p>{{ dadosCnpj.endereco.complemento }}</p>
-      <p>{{ dadosCnpj.endereco.bairro }} - {{ dadosCnpj.endereco.municipio }}/{{ dadosCnpj.endereco.uf }}</p>
-      <p>CEP: {{ dadosCnpj.endereco.cep }}<br><br></p>
+        <h3>Endereço</h3>
+        <p>{{ dadosCnpj.endereco.tipo_logradouro }} {{ dadosCnpj.endereco.logradouro }}, {{ dadosCnpj.endereco.numero }}</p>
+        <p>{{ dadosCnpj.endereco.complemento }}</p>
+        <p>{{ dadosCnpj.endereco.bairro }} - {{ dadosCnpj.endereco.municipio }}/{{ dadosCnpj.endereco.uf }}</p>
+        <p>CEP: {{ dadosCnpj.endereco.cep }}<br><br></p>
 
-      <h3>Contato</h3>
-      <p>Telefone 1: {{ dadosCnpj.telefone1 }}</p>
-      <p>Telefone 2: {{ dadosCnpj.telefone2 }}</p>
-      <p>Email: {{ dadosCnpj.email }}<br><br></p>
+        <h3>Contato</h3>
+        <p>Telefone 1: {{ dadosCnpj.telefone1 }}</p>
+        <p>Telefone 2: {{ dadosCnpj.telefone2 }}</p>
+        <p>Email: {{ dadosCnpj.email }}<br><br></p>
 
-      <h3>Simples</h3>
-      <p>Optante: {{ dadosCnpj.simples.optante_simples }}</p>
-      <p>Data Opção: {{ dadosCnpj.simples.data_opcao }}</p>
-      <p>Data Exclusão: {{ dadosCnpj.simples.data_exclusao }}<br><br></p>
+        <h3>Simples</h3>
+        <p>Optante: {{ dadosCnpj.simples.optante_simples }}</p>
+        <p>Data Opção: {{ dadosCnpj.simples.data_opcao }}</p>
+        <p>Data Exclusão: {{ dadosCnpj.simples.data_exclusao }}<br><br></p>
 
-      <h3>MEI</h3>
-      <p>Optante: {{ dadosCnpj.mei.optante_mei }}<br><br></p>
+        <h3>MEI</h3>
+        <p>Optante: {{ dadosCnpj.mei.optante_mei }}<br><br></p>
 
-      <h3>Atividade Principal</h3>
-      <p>{{ dadosCnpj.atividade_principal.codigo }} - {{ dadosCnpj.atividade_principal.descricao }}<br><br></p>
+        <h3>Atividade Principal</h3>
+        <p>{{ dadosCnpj.atividade_principal.codigo }} - {{ dadosCnpj.atividade_principal.descricao }}<br><br></p>
 
-      <h3>Atividades Secundárias</h3>
-      <div *ngFor="let act of dadosCnpj.atividades_secundarias">
-        <p>{{ act.codigo }} - {{ act.descricao }}<br><br></p>
-      </div>
+        <h3>Atividades Secundárias</h3>
+        @for (act of dadosCnpj.atividades_secundarias; track $index) {
+          <p>{{ act.codigo }} - {{ act.descricao }}<br><br></p>
+        }
 
-      <h3>Sócios</h3>
-      <div *ngFor="let socio of dadosCnpj.socios">
-        <p><strong>Nome:</strong> {{ socio.nome }}</p>
-        <p><strong>CPF/CNPJ:</strong> {{ socio.cpf_cnpj }}</p>
-        <p><strong>Data Entrada:</strong> {{ socio.data_entrada }}</p>
-        <p><strong>Qualificação:</strong> {{ socio.qualificacao }}</p>
-        <hr />
-      </div>
-    </ion-label>
-  </ion-item>
+        <h3>Sócios</h3>
+        @for (socio of dadosCnpj.socios; track $index) {
+          <p><strong>Nome:</strong> {{ socio.nome }}</p>
+          <p><strong>CPF/CNPJ:</strong> {{ socio.cpf_cnpj }}</p>
+          <p><strong>Data Entrada:</strong> {{ socio.data_entrada }}</p>
+          <p><strong>Qualificação:</strong> {{ socio.qualificacao }}</p>
+          <hr />
+        }
+      </ion-label>
+    </ion-item>
+  }
 </ion-content>
